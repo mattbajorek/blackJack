@@ -1,0 +1,94 @@
+body {
+	background: black;
+}
+
+button {
+	position: absolute;
+}
+.wrapper {
+	position: relative;
+	width: 1200px;
+	height: 600px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.holder {
+	position: absolute;
+	width: 600px;
+	height: 350px;
+	padding: 0;
+	background: white;
+	top: 80px;
+	left: 300px;
+}
+
+.green {
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 550px solid #024500;
+    border-top: none;
+    border-bottom-right-radius: 550px;
+    border-bottom-left-radius: 550px;
+    left: 50px;
+    top: 0em;
+}
+
+.wood {
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 600px solid #371e00;
+    border-top: none;
+    border-bottom-right-radius: 600px;
+    border-bottom-left-radius: 600px;
+    left: 0em;
+    top: 0em;
+}
+
+.card {
+	position: relative;
+	margin: 0;
+	border: black solid 2px;
+	border-radius: 5%;
+	width: 250px;
+	height: 350px;
+	background: white;
+}
+
+.number, .symbol {
+	font-size: 35px;
+	font-family: Serif, "Times New Roman";
+	text-align: center;
+	color: black;
+}
+
+.symbol {
+	font-size: 50px;
+}
+
+.top-number, .top-symbol {
+	position: absolute;
+	top: 10px;
+	left: 5px;
+}
+
+.bottom-number, .bottom-symbol {
+	position: absolute;
+	bottom: 10px;
+	right: 5px;
+	-ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+
+.top-symbol {
+	top: 40px;
+}
+
+.bottom-symbol {
+	bottom: 40px;
+}
