@@ -15,19 +15,19 @@ function createcards(amount) {
         countSymbols = Math.floor( (Math.random() * 3) + 1);
 
         // Make card
-        $(".holder").append("<div class=\"card\"></div>");
+        $(".holder").append('<div class="card"></div>');
 
         // Adds number div classes
-        $(".card").append("<div class=\"number top-number\"></div>");
-        $(".card").append("<div class=\"number bottom-number\"></div>");
+        $(".card").append('<div class="number top-number"></div>');
+        $(".card").append('<div class="number bottom-number"></div>');
         // Changes the number to the button selected
         $(".number").text( numbers[countNumbers] );
         // Positions the number properly on card
         numberPosition( numbers[countNumbers] );
 
         // Adds symbol div classes
-        $(".card").append("<div class=\"symbol top-symbol\"></div>");
-        $(".card").append("<div class=\"symbol bottom-symbol\"></div>");
+        $(".card").append('<div class="symbol top-symbol"></div>');
+        $(".card").append('<div class="symbol bottom-symbol"></div>');
         // Changes the top and bottom symbols to the button selected
         $(".top-symbol").text( symbols[countSymbols] );
         $(".bottom-symbol").text( symbols[countSymbols] );
@@ -184,7 +184,7 @@ var makeCenterSymbol = function(times) {
         // Increment i
         i++
         // Add div
-        $(".card").append("<div class=\"symbol center-symbol\"></div>");
+        $(".card").append('<div class="symbol center-symbol"></div>');
         // Add symbol text
         $(".center-symbol:last-child").text($(".top-symbol").text());
     }
@@ -250,7 +250,7 @@ var changeSuitImage = function() {
         suit = "diamond";
     }
     // Create picture div
-    $(".card").append("<div class=\"symbol center-symbol\"><img src=\"images/" + suit + numbers[countNumbers] + ".png\"/></div>");
+    $(".card").append('<div class="symbol center-symbol"><img src="images/" + suit + numbers[countNumbers] + ".png"/></div>');
     // Position the picture
     $(".center-symbol:eq(0)").css("position", "absolute");
     $(".center-symbol:eq(0)").css("top", "57px");

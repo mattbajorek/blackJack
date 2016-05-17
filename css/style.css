@@ -1,9 +1,15 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	background: black;
 }
 
 button {
 	position: absolute;
+	top: 30px;
+	left: 30px;
 }
 .wrapper {
 	position: relative;
@@ -15,12 +21,11 @@ button {
 
 .holder {
 	position: absolute;
-	width: 600px;
+	width: 520px;
 	height: 350px;
 	padding: 0;
-	background: white;
 	top: 80px;
-	left: 300px;
+	left: 340px;
 }
 
 .green {
@@ -51,12 +56,17 @@ button {
 
 .card {
 	position: relative;
+	display: inline-block;
 	margin: 0;
 	border: black solid 2px;
 	border-radius: 5%;
 	width: 250px;
 	height: 350px;
 	background: white;
+}
+
+.card:first-child { 
+    margin-right: 20px;
 }
 
 .number, .symbol {
