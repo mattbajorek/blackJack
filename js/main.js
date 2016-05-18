@@ -19,4 +19,10 @@ $( document ).ready(function() {
     	// Create player card
         createCards("dealer",1);
     });
+    $(".calPlayerScore").on("click",function(){
+    	console.log(calScore("player"));
+    });
+    $(".calDealerScore").on("click",function(){
+    	console.log(calScore("dealer"));
+    });
 });

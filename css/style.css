@@ -23,9 +23,21 @@ body {
 	left: 30px;
 }
 
-.hitDealer {
+.calPlayerScore {
 	position: absolute;
 	top: 90px;
+	left: 30px;
+}
+
+.hitDealer {
+	position: absolute;
+	top: 120px;
+	left: 30px;
+}
+
+.calDealerScore {
+	position: absolute;
+	top: 150px;
 	left: 30px;
 }
 

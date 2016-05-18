@@ -1,16 +1,18 @@
 // Initialize numbers and symbols
 var numbers = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
 var symbols = ["\u2660","\u2663","\u2665","\u2666"]; // spades, clubs, hearts, diamonds
-var randomNumber
-var randomSymbol
+var randomNumber;
+var randomSymbol;
 var cardNumber = 1;
+var dealerScore = [];
+var playerScore = [];
 
 // Fraction changes size of card to the fractional percentage
 var fraction = 1/1.5;
 
 // Size the holder
 function holderSize(person) {
-    $("."+ person).css("height", 350*fraction + "px");
+    $("." + person).css("height", 350*fraction + "px");
     $("." + person).css("width", 540*fraction + "px");
 }
 
@@ -20,6 +22,13 @@ function createCards(person,amount) {
         // Generate random number (0-12) for numbers, (0-3) for symbols
         randomNumber = Math.floor( (Math.random() * 12) + 1);
         randomSymbol = Math.floor( (Math.random() * 3) + 1);
+
+        // Save dealer or player numbers
+        if (person == "dealer") {
+            dealerScore.push(randomNumber+1);
+        } else {
+            playerScore.push(randomNumber+1);
+        }
 
         // Make card
         $("."+ person).append('<div class="card card' + cardNumber + '"></div>');
@@ -70,7 +79,10 @@ function deletecards() {
     while ($(".holder").find(".card").length > 0) {
         $(".card").remove();
     }
+    // Reinitiallize variables
     cardNumber = 1;
+    dealerScore = [];
+    playerScore = [];
 }
 
 // Positions the number properly on card
@@ -303,5 +315,48 @@ var symbolColor = function() {
     } else {
         $(".card" + cardNumber + " .number").css("color", "black");
         $(".card" + cardNumber + " .symbol").css("color", "black");
+    }
+}
+
+// Calculates the score
+var calScore = function(person) {
+    // Initialize variables
+    var sumPerson = 0;
+    var numAces = 0;
+    var personScore = [];
+    // Select person
+    if (person == "dealer") {
+        personScore = dealerScore;
+    } else {
+        personScore = playerScore;
+    }
+    // Return 0 if no cards shown
+    if (personScore.length == 0) {
+        return sumPerson;
+    }
+    // For loop to add cards
+    for (var i=0; i<personScore.length; i++) {
+        // Add all cards other than Aces, counts Aces
+        if (personScore[i] >= 10) {
+            sumPerson += 10;
+        } else if (personScore[i] < 10 && personScore[i] > 1) {
+            sumPerson += personScore[i];
+        } else {
+            numAces++;
+        }
+    }
+    // Determine whether to add 1 or 11 for Aces
+    if (numAces == 0) {
+        return sumPerson;
+    } else {
+        while (numAces > 0) {
+            if (sumPerson < 11) {
+                sumPerson += 11;
+            } else {
+                sumPerson += 1;
+            }
+            numAces--;
+        }
+        return sumPerson;
     }
 }
