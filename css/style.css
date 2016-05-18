@@ -59,13 +59,12 @@ button {
 }
 
 .holder {
-	position: absolute;
-	width: 35%;
-	height: 50%;
+	position: relative;
+	width: 520px; /*250*2 + 20px*/
+	height: 350px; /*350px*/
 	padding: 0;
 	background: black;
-	bottom: 15%;
-	left: 25%;
+	margin: 0 auto;
 }
 
 .card {
@@ -77,10 +76,6 @@ button {
 	width: 250px; /*250px*/
 	height: 350px; /*350px*/
 	background: white;
-}
-
-.card:first-child { 
-    margin-right: 20px;
 }
 
 .card img {

@@ -4,20 +4,27 @@ var symbols = ["\u2660","\u2663","\u2665","\u2666"]; // spades, clubs, hearts, d
 var randomNumber
 var randomSymbol
 var cardNumber = 1;
-var fraction = 1/2;
+
+// Fraction changes size of card to the fractional percentage
+var fraction = 1/1.5;
 
 // Create card steps
-function createcards(amount) {
+function createcards(person,amount) {
     while (amount>0) {
         // Generate random number (0-12) for numbers, (0-3) for symbols
         randomNumber = Math.floor( (Math.random() * 12) + 1);
         randomSymbol = Math.floor( (Math.random() * 3) + 1);
 
+        // Size the holder
+        $("."+ person).css("height", 350*fraction + "px");
+        $("." + person).css("width", 540*fraction + "px");
+
         // Make card
-        $(".holder").append('<div class="card card' + cardNumber + '"></div>');
-        // Size the card
+        $("."+ person).append('<div class="card card' + cardNumber + '"></div>');
+        // Size the card and margin
         $(".card" + cardNumber).css("height", 350*fraction + "px");
         $(".card" + cardNumber).css("width", 250*fraction + "px");
+        $(".card" + cardNumber).css("margin", "0 " + 10*fraction + "px");
 
         // Adds number div classes
         $(".card" + cardNumber).append('<div class="number top-number"></div>');
@@ -54,9 +61,10 @@ function createcards(amount) {
 
 // Deletes cards
 function deletecards() {
-    for (var i = 1; i <= cardNumber; i++) {
-        $(".card" + i).remove();
+    while ($(".holder").find(".card").length > 0) {
+        $(".card").remove();
     }
+    cardNumber = 1;
 }
 
 // Positions the number properly on card

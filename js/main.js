@@ -1,8 +1,10 @@
 $( document ).ready(function() {
-    $(".generateHand").click(function(){
+    $(".generateHand").on("click",function(){
     	// Delete cards
         deletecards();
-        // Create cards
-        createcards(2);
+        // Create dealer cards
+        createcards("dealer",2);
+        // Create player cards
+        createcards("player",2);
     });
 });
