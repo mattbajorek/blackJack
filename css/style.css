@@ -2,6 +2,11 @@
 	box-sizing: border-box;
 }
 
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
 body {
 	background: black;
 }
@@ -13,24 +18,15 @@ button {
 }
 .wrapper {
 	position: relative;
-	width: 1200px;
-	height: 600px;
+	width: 100%;
+	height: 100%;
 	margin: 0 auto;
 	padding: 0;
 }
 
-.holder {
-	position: absolute;
-	width: 520px;
-	height: 350px;
-	padding: 0;
-	top: 80px;
-	left: 340px;
-}
-
 .green {
     position: absolute;
-    width: 0;
+    /*width: 0;
     height: 0;
     line-height: 0;
     border: 550px solid #024500;
@@ -38,12 +34,16 @@ button {
     border-bottom-right-radius: 550px;
     border-bottom-left-radius: 550px;
     left: 50px;
-    top: 0em;
+    top: 0em;*/
+    width: 100%;
+    height: 90%;
+    top: 0;
+    background: #024500;
 }
 
 .wood {
     position: absolute;
-    width: 0;
+    /*width: 0;
     height: 0;
     line-height: 0;
     border: 600px solid #371e00;
@@ -51,7 +51,21 @@ button {
     border-bottom-right-radius: 600px;
     border-bottom-left-radius: 600px;
     left: 0em;
-    top: 0em;
+    top: 0em;*/
+    width: 100%;
+    height: 10%;
+    bottom: 0;
+    background: #371e00 url("../images/wood.png");
+}
+
+.holder {
+	position: absolute;
+	width: 35%;
+	height: 50%;
+	padding: 0;
+	background: black;
+	bottom: 15%;
+	left: 25%;
 }
 
 .card {
@@ -60,13 +74,18 @@ button {
 	margin: 0;
 	border: black solid 2px;
 	border-radius: 5%;
-	width: 250px;
-	height: 350px;
+	width: 250px; /*250px*/
+	height: 350px; /*350px*/
 	background: white;
 }
 
 .card:first-child { 
     margin-right: 20px;
+}
+
+.card img {
+	height: 236px; /*236 px vertical*/
+	width: 146px; /*146 px horizontal*/
 }
 
 .number, .symbol {
@@ -82,23 +101,23 @@ button {
 
 .top-number, .top-symbol {
 	position: absolute;
-	top: 10px;
-	left: 5px;
+	top: 2.85714285714%; /*10px;*/
+	left: 2%; /*5px;*/
 }
 
 .bottom-number, .bottom-symbol {
 	position: absolute;
-	bottom: 10px;
-	right: 5px;
+	bottom: 2.85714285714%; /*10px vertical*/
+	right: 2%; /*5px;*/
 	-ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
     transform: rotate(180deg);
 }
 
 .top-symbol {
-	top: 40px;
+	top: 11.4285714286%; /*40px vertical*/
 }
 
 .bottom-symbol {
-	bottom: 40px;
+	bottom: 11.4285714286%; /*40px vertical*/
 }
