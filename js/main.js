@@ -1,10 +1,22 @@
 $( document ).ready(function() {
+	// Size the holders
+	holderSize("dealer");
+	holderSize("player");
+    // Button clicks
     $(".generateHand").on("click",function(){
     	// Delete cards
         deletecards();
         // Create dealer cards
-        createcards("dealer",2);
+        createCards("dealer",2);
         // Create player cards
-        createcards("player",2);
+        createCards("player",2);
+    });
+    $(".hitPlayer").on("click",function(){
+    	// Create player card
+        createCards("player",1);
+    });
+    $(".hitDealer").on("click",function(){
+    	// Create player card
+        createCards("dealer",1);
     });
 });

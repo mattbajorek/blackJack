@@ -8,23 +8,28 @@ var cardNumber = 1;
 // Fraction changes size of card to the fractional percentage
 var fraction = 1/1.5;
 
+// Size the holder
+function holderSize(person) {
+    $("."+ person).css("height", 350*fraction + "px");
+    $("." + person).css("width", 540*fraction + "px");
+}
+
 // Create card steps
-function createcards(person,amount) {
+function createCards(person,amount) {
     while (amount>0) {
         // Generate random number (0-12) for numbers, (0-3) for symbols
         randomNumber = Math.floor( (Math.random() * 12) + 1);
         randomSymbol = Math.floor( (Math.random() * 3) + 1);
 
-        // Size the holder
-        $("."+ person).css("height", 350*fraction + "px");
-        $("." + person).css("width", 540*fraction + "px");
-
         // Make card
         $("."+ person).append('<div class="card card' + cardNumber + '"></div>');
-        // Size the card and margin
+        // Size the card
         $(".card" + cardNumber).css("height", 350*fraction + "px");
         $(".card" + cardNumber).css("width", 250*fraction + "px");
-        $(".card" + cardNumber).css("margin", "0 " + 10*fraction + "px");
+        // Count the card
+        var count = $("."+ person + " .card").length;
+        // Position the card
+        $(".card" + cardNumber).css("left", 50*fraction*(count-1) + "px");
 
         // Adds number div classes
         $(".card" + cardNumber).append('<div class="number top-number"></div>');
@@ -54,6 +59,7 @@ function createcards(person,amount) {
         symbolColor();
 
         // Continue making cards
+        //count++;
         cardNumber++;
         amount--;
     }
