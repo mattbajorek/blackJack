@@ -67,8 +67,15 @@ function createCards(person,amount) {
         // Correct symbol colors
         symbolColor();
 
+        // Cover first dealer card
+        if (person == "dealer" && count == 1) {
+            $(".card" + cardNumber).append('<img class="back" src="images/back.png"/>');
+            $(".card" + cardNumber).css("border","none");
+            $(".back").css("height", 350*fraction + "px");
+            $(".back").css("width", 250*fraction + "px");
+        }
+
         // Continue making cards
-        //count++;
         cardNumber++;
         amount--;
     }
