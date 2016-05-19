@@ -35,12 +35,16 @@ h1 {
 }
 
 h2 {
+	font-size: 60px; /* font 60px */
+	padding: 5px;
+}
+
+.chip h2 {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	padding: 0;
-	top: 30%; /* vertical 30% */
-	font-size: 60px; /* font 60px */
+	top: 30%;
 }
 
 
@@ -88,16 +92,16 @@ button:hover, button:active, button:focus {
 
 .holder-chips {
 	position: absolute;
-	height: 155px; /*155 px vertical*/
-	width: 775px; /*(155*5) px horizontal*/
-	bottom: 20%; 
-	left: 2%;
+	height: 775px; /*155 px vertical*/
+	width: 155px; /*(155*5) px horizontal*/
+	top: 0; 
+	left: 0;
 }
 
 .chip {
 	position: relative;
-	height: 100%;
-	width: 20%; 
+	height: 20%; /*100%*/
+	width: 100%; /*20%*/
 	float: left;
 	text-align: center;
 }
@@ -118,28 +122,28 @@ button:hover, button:active, button:focus {
 	width: 155px; /*155 px horizontal*/
 }
 
-.hitPlayer {
+.holder-buttons {
 	position: absolute;
-	top: 460px;
-	right: 30px;
+	height: 400px; /* 100 px vertical*/
+	width: 300px; /* 400 px horizontal*/
+	bottom: 20%; 
+	right: 2%;
 }
 
-.calPlayerScore {
-	position: absolute;
-	top: 490px;
-	right: 30px;
+.holder-buttons button {
+	position: relative;
+	height: 40%; /* 100% vertical */
+	width: 100%; /* 40% vertical */
+	float: left;
+	text-align: center;
+	font-size: 40px;
 }
 
-.hitDealer {
-	position: absolute;
-	top: 520px;
-	right: 30px;
-}
-
-.calDealerScore {
-	position: absolute;
-	top: 550px;
-	right: 30px;
+.holder-bet {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    top: 35%;
 }
 
 .green-table {
@@ -160,7 +164,7 @@ button:hover, button:active, button:focus {
 
 .holder {
 	position: relative;
-	width: 520px; /*250*2 + 20px*/
+	width: 400px; /*400px*/
 	height: 350px; /*350px*/
 	padding: 0;
 	/*background: black;*/

@@ -25,32 +25,55 @@ $( document ).ready(function() {
 	    	// Size the holders
 			holderSize("dealer");
 			holderSize("player");
-	    	// Delete cards
-	        //deletecards();
+			holderSize("bet");
+			$(".holder-chips").css("height", 775*fraction + "px");
+		    $(".holder-chips").css("width", 155*fraction + "px");
+		    $(".holder-buttons").css("height", 300*fraction + "px");
+		    $(".holder-buttons").css("width", 200*fraction + "px");
+		    $(".holder-bet").css("height", 300*fraction + "px");
 	        // Create dealer cards
 	        createCards("dealer",2);
 	        // Create player cards
 	        createCards("player",2);
+	        // Create hit and stand buttons
+	        createButtons("hit","Hit");
+	        createButtons("stand","Stand");
     	} else {
     		// Show error message
     		$(".intro-error").text("Please select an amount");
 	    }
     });
 
-    $(".hitPlayer").on("click",function(){
+    // Card dealing process
+
+    // Allow player to hit until bust
+    $(".wrapper").on("click",".hit",function(){
     	// Create player card
         createCards("player",1);
-    });
-    $(".hitDealer").on("click",function(){
-    	// Create player card
-        createCards("dealer",1);
-    });
-    $(".calPlayerScore").on("click",function(){
-    	console.log(calScore("player"));
-    });
-    $(".calDealerScore").on("click",function(){
-    	console.log(calScore("dealer"));
+        // Check if player bust
+        if (calScore("player") > 21) {
+        	roundEnd();
+        }
     });
 
-    
+    // If player stands, calculate dealers moves
+    $(".wrapper").on("click",".stand",function(){
+    	roundEnd();
+    });
+
+    // Start new round of
+    $(".wrapper").on("click",".bet",function(){
+    	// Remove words
+    	$(".holder-bet h2").text("");
+    	// Start new round of betting
+    	deletecards();
+    	// Create dealer cards
+        createCards("dealer",2);
+        // Create player cards
+        createCards("player",2);
+        // Remove bet and add hit and stand
+    	removeButtons();
+        createButtons("hit","Hit");
+        createButtons("stand","Stand");
+    });
 });

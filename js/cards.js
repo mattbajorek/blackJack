@@ -11,11 +11,9 @@ var playerScore = [];
 var fraction = 1/1.5;
 
 // Size the holder
-function holderSize(person) {
-    $("." + person).css("height", 350*fraction + "px");
-    $("." + person).css("width", 540*fraction + "px");
-    $(".holder-chips").css("height", 155*fraction + "px");
-    $(".holder-chips").css("width", 775*fraction + "px");
+function holderSize(holder) {
+    $("." + holder).css("height", 350*fraction + "px");
+    $("." + holder).css("width", 400*fraction + "px");
 }
 
 // Create card steps
@@ -85,7 +83,7 @@ function createCards(person,amount) {
 
 // Deletes cards
 function deletecards() {
-    while ($(".holder").find(".card").length > 0) {
+    while ($(".card").length > 0) {
         $(".card").remove();
     }
     // Reinitiallize variables
@@ -367,5 +365,37 @@ var calScore = function(person) {
             numAces--;
         }
         return sumPerson;
+    }
+}
+
+// Dealer plays stand on all 17s
+var dealerplay = function() {
+    // Remove covered card
+    $(".back").remove();
+    // Keep hitting until 17 or greater
+    while (calScore("dealer") < 17) {
+        createCards("dealer",1);
+    }
+}
+
+// Dealer plays stand on all 17s
+var calWin = function() {
+    // Check to see of 8 possible outcomes
+    if (calScore("player") > 21 && calScore("dealer") > 21) {
+        $(".holder-bet h2").text("Both player and dealer bust! No winner!");
+    } else if (calScore("player") > 21 && calScore("dealer") < 21) {
+        $(".holder-bet h2").text("Player busts! Dealer wins!");
+    } else if (calScore("player") < 21 && calScore("dealer") > 21) {
+        $(".holder-bet h2").text("Dealer busts! Player wins!");
+    }  else if (calScore("player") == 21 && calScore("dealer") == 21) {
+        $(".holder-bet h2").text("Player and Dealer have blackjack! No winner!");
+    } else if (calScore("player") == 21 && calScore("dealer") < 21) {
+        $(".holder-bet h2").text("Player gets blackjack! Player wins double!");
+    } else if (calScore("player") < 21 && calScore("dealer") == 21) {
+        $(".holder-bet h2").text("Dealer gets blackjack! Dealer wins!");
+    } else if (calScore("player") > calScore("dealer")) {
+        $(".holder-bet h2").text("Player wins by " + (calScore("player")-calScore("dealer")) + "!");
+    } else if (calScore("player") < calScore("dealer")) {
+        $(".holder-bet h2").text("Dealer wins by " + (calScore("dealer")-calScore("player")) + "!");
     }
 }
