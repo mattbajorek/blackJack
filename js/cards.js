@@ -14,6 +14,8 @@ var fraction = 1/1.5;
 function holderSize(person) {
     $("." + person).css("height", 350*fraction + "px");
     $("." + person).css("width", 540*fraction + "px");
+    $(".holder-chips").css("height", 155*fraction + "px");
+    $(".holder-chips").css("width", 775*fraction + "px");
 }
 
 // Create card steps

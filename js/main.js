@@ -18,9 +18,10 @@ $( document ).ready(function() {
     // Play button click
     $(".play").on("click",function(){
     	if ($(".hundred").css('background-color') == 'rgb(255, 0, 0)' || $(".thousand").css('background-color') == 'rgb(255, 0, 0)' || $(".million").css('background-color') == 'rgb(255, 0, 0)') {
-    		console.log(moneySelection);
     		// Hide main blackjack screen
 	    	$(".intro").remove();
+	    	// Show chips
+	    	createChips(moneySelection);
 	    	// Size the holders
 			holderSize("dealer");
 			holderSize("player");
@@ -35,6 +36,7 @@ $( document ).ready(function() {
     		$(".intro-error").text("Please select an amount");
 	    }
     });
+
     $(".hitPlayer").on("click",function(){
     	// Create player card
         createCards("player",1);

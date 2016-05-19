@@ -22,7 +22,7 @@ body {
 	padding: 0;
 }
 
-h1, h3, h4 {
+h1, h2, h3, h4 {
 	position: relative;
 	text-align: center;
 	padding: 30px 0;
@@ -33,6 +33,16 @@ h1, h3, h4 {
 h1 {
 	font-size: 100px;
 }
+
+h2 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	top: 30%; /* vertical 30% */
+	font-size: 60px; /* font 60px */
+}
+
 
 h3 {
 	font-size: 40px;
@@ -76,31 +86,63 @@ button:hover, button:active, button:focus {
 	width: 32%;
 }
 
+.holder-chips {
+	position: absolute;
+	height: 155px; /*155 px vertical*/
+	width: 775px; /*(155*5) px horizontal*/
+	bottom: 20%; 
+	left: 2%;
+}
+
+.chip {
+	position: relative;
+	height: 100%;
+	width: 20%; 
+	float: left;
+	text-align: center;
+}
+
+.chip img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+}
+
+.chip-amounts {
+	position: relative;
+	clear: left;
+	float: left;
+	width: 155px; /*155 px horizontal*/
+}
+
 .hitPlayer {
 	position: absolute;
 	top: 460px;
-	left: 30px;
+	right: 30px;
 }
 
 .calPlayerScore {
 	position: absolute;
 	top: 490px;
-	left: 30px;
+	right: 30px;
 }
 
 .hitDealer {
 	position: absolute;
 	top: 520px;
-	left: 30px;
+	right: 30px;
 }
 
 .calDealerScore {
 	position: absolute;
 	top: 550px;
-	left: 30px;
+	right: 30px;
 }
 
-.green {
+.green-table {
     position: absolute;
     width: 100%;
     height: 90%;
@@ -108,7 +150,7 @@ button:hover, button:active, button:focus {
     background: #024500;
 }
 
-.wood {
+.wood-table {
     position: absolute;
     width: 100%;
     height: 10%;
