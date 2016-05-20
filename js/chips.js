@@ -45,13 +45,13 @@ function removeButtons(className) {
 }
 
 // End of play
-function roundEnd() {
+function roundEnd(lastCard) {
     // Remove hit and stand buttons
     removeButtons();
     // Dealer plays
-    dealerplay();
+    dealerplay(lastCard);
     // Find winner
-    calWin();
+    calWin(lastCard);
     // Create bet button
     createButtons("bet","Bet");
 }

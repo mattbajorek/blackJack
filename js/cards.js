@@ -17,12 +17,12 @@ function holderSize(holder) {
 }
 
 // Create card steps
-function createCards(person,amount) {
+function createCards(person,amount,lastCard) {
     while (amount>0) {
         // Generate random number (0-12) for numbers, (0-3) for symbols
         randomNumber = Math.floor( (Math.random() * 12) + 1);
         randomSymbol = Math.floor( (Math.random() * 3) + 1);
-
+        
         // Save dealer or player numbers
         if (person == "dealer") {
             dealerScore.push(randomNumber+1);
@@ -74,10 +74,30 @@ function createCards(person,amount) {
             $(".back").css("height", 350*fraction + "px");
             $(".back").css("width", 250*fraction + "px");
         }
+        // Animate the card down
+        animateCard(cardNumber,person,lastCard);
 
         // Continue making cards
         cardNumber++;
         amount--;
+    }
+}
+
+// Card animation
+function animateCard(cardNumber,person,lastCard) {
+    if (cardNumber <= 4) {
+        // Delay initial 4 card roll out
+        var delayAmount = (cardNumber-1) * 500;
+        $(".card" + cardNumber).delay(delayAmount).animate({top: '0'}, {duration: 500});
+    } else {
+        if (person == "player") {
+            // Normal animation for all subsequent cards
+            $(".card" + cardNumber).animate({top: '0'}, {duration: 500});
+        } else {
+            // Delay dealer card rolls
+            var delayAmount = (cardNumber-lastCard) * 500;
+            $(".card" + cardNumber).delay(delayAmount).animate({top: '0'}, {duration: 500});
+        }
     }
 }
 
@@ -93,7 +113,7 @@ function deletecards() {
 }
 
 // Positions the number properly on card
-var numberPosition = function(num) {
+function numberPosition(num) {
     var classes = [".card" + cardNumber + " .top-number", ".card" + cardNumber + " .bottom-number"];
     var position = ["left", "right"];
 
@@ -111,7 +131,7 @@ var numberPosition = function(num) {
 }
 
 // Sizes the top and bottom symbols properly on card
-var symbolSize = function(sym,size) {
+function symbolSize(sym,size) {
     var pixels = [], symbol = [];
     switch (size) {
         case "small": pixels = [45*fraction + "px", 40*fraction + "px", 50*fraction + "px"]; symbol = [".card" + cardNumber + " .top-symbol",".card" + cardNumber + " .bottom-symbol"]; break;
@@ -129,7 +149,7 @@ var symbolSize = function(sym,size) {
 }
 
 // Loop for positioning center symbol
-var positioning = function(num,top,left) {
+function positioning(num,top,left) {
     for (var i=0; i<num.length; i++) {
         $(".card" + cardNumber + " .center-symbol:eq(" + num[i] +")").css("top", top[i]);
         $(".card" + cardNumber + " .center-symbol:eq(" + num[i] +")").css("left", left[i]);
@@ -137,7 +157,7 @@ var positioning = function(num,top,left) {
 }
 
 // Adds the center element
-var centerSymbol = function() {
+function centerSymbol() {
     if (randomNumber < 10) {
         // Make symbol
         makeCenterSymbol(randomNumber+1);
@@ -219,7 +239,7 @@ var centerSymbol = function() {
 }
 
 // Makes center-symbol
-var makeCenterSymbol = function(times) {
+function makeCenterSymbol(times) {
     var i = 0;
     while (i < times) {
         // Increment i
@@ -234,40 +254,40 @@ var makeCenterSymbol = function(times) {
 }
 
 // Position functions
-var pos2 = function() {
+function pos2() {
     var num = [0,1];
     var top = ["11.4285714286%","68.5714285714%"]; /*40px, 240px vertical*/
     var left = ["42%","42%"]; /*105px, 105px horizontal*/
     positioning(num,top,left);
 }
-var pos4 = function() {
+function pos4() {
     var num = [0,1,2,3];
     var top = ["11.4285714286%","11.4285714286%","68.5714285714%","68.5714285714%"]; /*40px, 40px, 240px, 240px vertical*/
     var left = ["22%","62%","22%","62%"]; /*55px, 155px, 55px, 155px horizontal*/
     positioning(num,top,left);
 }
-var pos5 = function() {
+function pos5() {
     pos4();
     var num = [4];
     var top = ["40%"]; /*140px vertical*/
     var left = ["42%"]; /*105px horizontal*/
     positioning(num,top,left);
 }
-var pos6 = function() {
+function pos6() {
     pos4();
     var num = [4,5];
     var top = ["40%","40%"]; /*140px, 140px vertical*/
     var left = ["22%","62%"]; /*55px, 155px horizontal*/
     positioning(num,top,left);
 }
-var pos7 = function() {
+function pos7() {
     pos6();
     var num = [6];
     var top = ["40%"]; /*140px vertical*/
     var left = ["42%"]; /*105px horizontal*/
     positioning(num,top,left);
 }
-var pos9 = function() {
+function pos9() {
     pos5();
     var num = [5,6,7,8];
     var top = ["28.5714285714%","28.5714285714%","51.4285714286%","51.4285714286%"]; /*100px, 100px, 180px, 180px vertical*/
@@ -275,7 +295,7 @@ var pos9 = function() {
     positioning(num,top,left);
 }
 
-var changeSuitImage = function() {
+function changeSuitImage() {
     var suit;
     if (symbols[randomSymbol] == "\u2663") {// clubs
         suit = "club";
@@ -315,7 +335,7 @@ var changeSuitImage = function() {
 }
 
 // Changes the color according to the symbol
-var symbolColor = function() {
+function symbolColor() {
     if ( symbols[randomSymbol] == "\u2665" || symbols[randomSymbol] == "\u2666") { // unicode for hearts and diamonds
         $(".card" + cardNumber + " .number").css("color", "red");
         $(".card" + cardNumber + " .symbol").css("color", "red");
@@ -326,7 +346,7 @@ var symbolColor = function() {
 }
 
 // Calculates the score
-var calScore = function(person) {
+function calScore(person) {
     // Initialize variables
     var sumPerson = 0;
     var numAces = 0;
@@ -369,33 +389,45 @@ var calScore = function(person) {
 }
 
 // Dealer plays stand on all 17s
-var dealerplay = function() {
+function dealerplay(lastCard) {
     // Remove covered card
     $(".back").remove();
     // Keep hitting until 17 or greater
     while (calScore("dealer") < 17) {
-        createCards("dealer",1);
+        createCards("dealer",1,lastCard);
     }
 }
 
 // Dealer plays stand on all 17s
-var calWin = function() {
-    // Check to see of 8 possible outcomes
-    if (calScore("player") > 21 && calScore("dealer") > 21) {
-        $(".holder-bet h2").text("Both player and dealer bust! No winner!");
-    } else if (calScore("player") > 21 && calScore("dealer") < 21) {
-        $(".holder-bet h2").text("Player busts! Dealer wins!");
-    } else if (calScore("player") < 21 && calScore("dealer") > 21) {
-        $(".holder-bet h2").text("Dealer busts! Player wins!");
-    }  else if (calScore("player") == 21 && calScore("dealer") == 21) {
-        $(".holder-bet h2").text("Player and Dealer have blackjack! No winner!");
-    } else if (calScore("player") == 21 && calScore("dealer") < 21) {
-        $(".holder-bet h2").text("Player gets blackjack! Player wins double!");
-    } else if (calScore("player") < 21 && calScore("dealer") == 21) {
-        $(".holder-bet h2").text("Dealer gets blackjack! Dealer wins!");
-    } else if (calScore("player") > calScore("dealer")) {
-        $(".holder-bet h2").text("Player wins by " + (calScore("player")-calScore("dealer")) + "!");
-    } else if (calScore("player") < calScore("dealer")) {
-        $(".holder-bet h2").text("Dealer wins by " + (calScore("dealer")-calScore("player")) + "!");
-    }
+function calWin(lastCard) {
+    window.setTimeout(function () {
+        // Check to see of 11 possible outcomes
+        if (calScore("player") > 21 && calScore("dealer") > 21) {
+            h2Text("Player busts and dealer busts! No winner!");
+        } else if (calScore("player") == 21 && calScore("dealer") > 21) {
+            h2Text("Player has blackjack! Dealer busts! Player wins double!");
+        } else if (calScore("player") > 21 && calScore("dealer") == 21) {
+            h2Text("Dealer has blackjack! Player busts! Dealer wins!");
+        } else if (calScore("player") == 21 && calScore("dealer") == 21) {
+            h2Text("Player and Dealer have blackjack! No winner!");
+        } else if (calScore("player") == 21 && calScore("dealer") < 21) {
+            h2Text("Player has blackjack! Player wins double!");
+        } else if (calScore("player") < 21 && calScore("dealer") == 21) {
+            h2Text("Dealer has blackjack! Dealer wins!");
+        } else if (calScore("player") > 21 && calScore("dealer") < 21) {
+            h2Text("Player busts! Dealer wins!");
+        } else if (calScore("player") < 21 && calScore("dealer") > 21) {
+            h2Text("Dealer busts! Player wins!");
+        } else if (calScore("player") > calScore("dealer")) {
+            h2Text("Player wins by " + (calScore("player")-calScore("dealer")) + "!");
+        } else if (calScore("player") < calScore("dealer")) {
+            h2Text("Dealer wins by " + (calScore("dealer")-calScore("player")) + "!");
+        } else if (calScore("player") == calScore("dealer")) {
+            h2Text("No winner!");
+        }
+    }, (cardNumber-lastCard+1)*500);
+}
+
+function h2Text(message) {
+    $(".holder-better h2").text(message);
 }
