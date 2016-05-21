@@ -14,6 +14,10 @@ var fraction = 1/1.5;
 function holderSize(holder) {
     $("." + holder).css("height", 350*fraction + "px");
     $("." + holder).css("width", 400*fraction + "px");
+    // Add white border
+    if (holder != "better") {
+        $("." + holder).css("border", "2px solid white");
+    }
 }
 
 // Create card steps
@@ -22,7 +26,7 @@ function createCards(person,amount,lastCard) {
         // Generate random number (0-12) for numbers, (0-3) for symbols
         randomNumber = Math.floor( (Math.random() * 12) + 1);
         randomSymbol = Math.floor( (Math.random() * 3) + 1);
-        
+
         // Save dealer or player numbers
         if (person == "dealer") {
             dealerScore.push(randomNumber+1);

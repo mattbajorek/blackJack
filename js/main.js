@@ -31,6 +31,10 @@ $( document ).ready(function() {
 		    $(".holder-buttons").css("height", 300*fraction + "px");
 		    $(".holder-buttons").css("width", 200*fraction + "px");
 		    $(".holder-better").css("height", 300*fraction + "px");
+		    // Listen for chips clicked to place bet
+		    $(".holder-better h2").text("Click on chips to place bet");
+		    betListener();
+		    /*
 	        // Alternate between player and dealer cards
 	        createCards("player",1);
 	        createCards("dealer",1);
@@ -40,7 +44,7 @@ $( document ).ready(function() {
 	        window.setTimeout(function () {
 		        createButtons("hit","Hit");
 	        	createButtons("stand","Stand");
-		    }, 2000);
+		    }, 2000); */
     	} else {
     		// Show error message
     		$(".intro-error").text("Please select an amount");
@@ -84,6 +88,34 @@ $( document ).ready(function() {
         window.setTimeout(function () {
 	        createButtons("hit","Hit");
         	createButtons("stand","Stand");
-	    }, 2000);
+	    }, 2500);
     });
 });
+
+// End of play
+function roundEnd(lastCard) {
+    // Remove hit and stand buttons
+    removeButtons();
+    // Dealer plays
+    dealerplay(lastCard);
+    // Find winner
+    calWin(lastCard);
+    // Create bet button
+    createButtons("bet","Bet");
+}
+
+// Create buttons steps
+function createButtons(className,textName) {
+    $(".holder-buttons").append('<button class="' + className + '">' + textName + '</button>');
+    //Size the buttons
+    $(".holder-buttons button").css("font-size", 50*fraction + "px");
+}
+
+// Remove buttons steps
+function removeButtons(className) {
+    if (arguments.length == 0) {
+        $(".holder-buttons").empty();
+    } else {
+        $("." + className).remove();
+    }
+}
