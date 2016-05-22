@@ -34,17 +34,6 @@ $( document ).ready(function() {
 		    // Listen for chips clicked to place bet
 		    $(".holder-better h2").text("Click on chips to place bet");
 		    betListener();
-		    /*
-	        // Alternate between player and dealer cards
-	        createCards("player",1);
-	        createCards("dealer",1);
-	        createCards("player",1);
-	        createCards("dealer",1);
-	        // Create hit and stand buttons after cards are dealt
-	        window.setTimeout(function () {
-		        createButtons("hit","Hit");
-	        	createButtons("stand","Stand");
-		    }, 2000); */
     	} else {
     		// Show error message
     		$(".intro-error").text("Please select an amount");
@@ -71,7 +60,7 @@ $( document ).ready(function() {
     	roundEnd(cardNumber);
     });
 
-    // Start new round of
+    // Start new round of betting
     $(".wrapper").on("click",".bet",function(){
     	// Remove words
     	$(".holder-better h2").text("");
@@ -90,6 +79,7 @@ $( document ).ready(function() {
         	createButtons("stand","Stand");
 	    }, 2500);
     });
+	
 });
 
 // End of play

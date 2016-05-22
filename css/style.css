@@ -3,6 +3,7 @@
 }
 
 html, body {
+	position: fixed;
 	width: 100%;
 	height: 100%;
 	padding: 0;
@@ -110,12 +111,44 @@ button:focus {
 }
 
 .chip {
-	position: relative;
 	height: 20%; /*100%*/
 	width: 100%; /*20%*/
+}
+
+.chip-relative {
+	position: relative;
 	float: left;
 	text-align: center;
 }
+
+.chip-absolute {
+	position: absolute;
+	bottom: -500%;
+}
+
+/* Chip animation */
+
+@keyframes moveUp {
+  
+  to {
+   bottom: 0;
+  }
+
+}
+
+.animation-chip {
+  animation-name: moveUp;
+  animation-duration: 1s; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0s;
+  animation-direction: normal; 
+}
+
+.position-end {
+  bottom: 0;
+}
+
+/*---------------*/
 
 .chip img {
 	position: absolute;
